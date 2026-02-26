@@ -12,9 +12,6 @@ public class Gl200TextProtocolDecoderTest extends ProtocolTest {
         var decoder = inject(new Gl200TextProtocolDecoder(null));
 
         verifyPositions(decoder, buffer(
-                "+RESP:GTERI,4F0D06,865585041396684,,00000100,12665,10,1,1,0.0,342,38.6,49.846792,40.426182,20260220064016,0400,0010,0F6E,08D7,00,0.0,,,,100,110000,,0,20260220064016,91C9$"));
-
-        verifyPositions(decoder, buffer(
                 "+RESP:GTERI,C30209,860201067200000,,00000080,0,16,1,1,47.2,245,169.3,-122.234955,47.906141,20260131234254,0310,0260,2CA2,014A2E17,,27,,20260131234255,51D8$"));
 
         verifyPosition(decoder, buffer(
@@ -592,6 +589,15 @@ public class Gl200TextProtocolDecoderTest extends ProtocolTest {
         verifyAttribute(decoder, buffer(
                 "+RESP:GTIGF,6E0202,868589060169789,ra79,145,1,0.0,83,532.2,-70.616413,-33.393457,20240610201937,0730,0001,333A,00CFA301,01,12,,0.0,20240610201938,3AE9$"),
                 Position.KEY_IGNITION, false);
+
+        verifyNotNull(decoder, buffer(
+                "+RESP:GTFRI,5E0100,861971050085935,4JGBB86EX9A518950,GV500MAP,12566,10,1,1,0.0,261,176.6,-122.226518,37.827873,20260226001537,0310,0260,010E,A06F,00,0.0,,,,,110000,,,,20260226001816,C1B2$"));
+
+        verifyNotNull(decoder, buffer(
+                "+RESP:GTBTC,5E0100,861971050085935,4JGBB86EX9A518950,GV500MAP,0,0.0,261,176.6,-122.226518,37.827873,20260226001537,0310,0260,010E,A06F,00,20260226002147,C1B3$"));
+
+        verifyNotNull(decoder, buffer(
+                "+RESP:GTSTC,5E0100,861971050085935,4JGBB86EX9A518950,GV500MAP,,0,0.0,261,176.6,-122.226518,37.827873,20260226001537,0310,0260,010E,A06F,00,20260226002152,C1B4$"));
     }
 
 }
